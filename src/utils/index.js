@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import {fileURLToPath} from 'url';
 import { dirname } from 'path';
+import { fakerES as faker } from "@faker-js/faker";
 
 export const createHash = async(password) =>{
     const salts = await bcrypt.genSalt(10);
@@ -14,7 +15,8 @@ const __dirname = dirname(__filename);
 
 export default __dirname;
 
-import { fakerES as faker } from "@faker-js/faker";
+
+// MOCKINGS
 
 export function generatePets() {
     let pets = [];
@@ -32,3 +34,27 @@ export function generatePets() {
     };
     return pets;
 }
+
+export function generateUsers() {
+    let users = [];
+    let cantUsers = 50;
+    for (let index = 0; index < cantUsers; index++) {
+        let first_name = faker.person.firstName();
+        let last_name = faker.person.lastName();
+        const newUser = {
+            _id: faker.string.uuid(),
+            first_name,
+            last_name,            
+            email: faker.internet.email({ firstName: first_name, lastName: last_name }),
+            password: 'coder123', //TODO Encriptado
+            role: faker.helpers.arrayElement(['user', 'admin']),
+            pets: []
+        }
+        users.push(newUser);
+    }
+    return users;
+}
+
+
+let users = generateUsers()
+console.log(users)
