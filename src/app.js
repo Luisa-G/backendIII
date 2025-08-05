@@ -7,6 +7,8 @@ import petsRouter from './routes/pets.router.js';
 import adoptionsRouter from './routes/adoption.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 
+import { generatePets } from './utils/index.js';
+
 const app = express();
 const PORT = process.env.PORT||8080;
 const connection = mongoose.connect(`mongodb+srv://LuisaG:6Cw9q0dhFm4ogrSA@cluster0.k7udovs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
@@ -33,6 +35,16 @@ app.get('/', (req, res) => {
     `;
     res.send(`${style}${content}`);
 });
+
+
+app.get('/mockingpets', (req, res) => {
+    try {
+        let pets = generatePets()
+        res.send(pets)
+    } catch(error) {
+        res.status(500).send(error)
+    }
+})
 
 app.listen(PORT,()=>{
     console.log(`Server is running on port http://localhost:${PORT}`);
