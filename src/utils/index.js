@@ -46,7 +46,7 @@ export function generateUsers() {
             first_name,
             last_name,            
             email: faker.internet.email({ firstName: first_name, lastName: last_name }),
-            password: 'coder123', //TODO Encriptado
+            password: bcrypt.hashSync('coder123', 10),
             role: faker.helpers.arrayElement(['user', 'admin']),
             pets: []
         }
@@ -56,5 +56,3 @@ export function generateUsers() {
 }
 
 
-let users = generateUsers()
-console.log(users)
