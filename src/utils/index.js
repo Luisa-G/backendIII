@@ -18,12 +18,11 @@ export default __dirname;
 
 // MOCKINGS
 
-export function generatePets() {
+export function generatePets(cantPets = 100) {
     let pets = [];
-    let cantPets = 100;
     for (let index = 0; index < cantPets; index++) {
         const newPet = {
-            _id: faker.string.uuid(),
+            // _id: faker.string.uuid(),
             name: faker.animal.petName(),
             specie: faker.animal.type(),
             birthDate: faker.date.birthdate({ mode: 'age', min: 0.5, max: 100}),
@@ -35,14 +34,13 @@ export function generatePets() {
     return pets;
 }
 
-export function generateUsers() {
+export function generateUsers(cantUsers = 50) {
     let users = [];
-    let cantUsers = 50;
     for (let index = 0; index < cantUsers; index++) {
         let first_name = faker.person.firstName();
         let last_name = faker.person.lastName();
         const newUser = {
-            _id: faker.string.uuid(),
+            // _id: faker.string.uuid(),
             first_name,
             last_name,            
             email: faker.internet.email({ firstName: first_name, lastName: last_name }),
