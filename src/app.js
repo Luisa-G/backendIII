@@ -16,6 +16,35 @@ const connection = mongoose.connect(`mongodb+srv://LuisaG:6Cw9q0dhFm4ogrSA@clust
 app.use(express.json());
 app.use(cookieParser());
 
+import swaggerUi from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
+
+const swaggerOptions = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "API Adoptme",
+            version: "1.0.0",
+            description: "API-REST Adoptme",
+        },
+        servers: [
+            {
+                url: "http://localhost:3001",
+                description: "Desarrollo",
+            },
+            {
+                url: "http://localhost:8080",
+                description: "Producción",
+            },
+        ],
+    },
+    apis: ["./src/docs/*.yaml"]
+};
+
+const swaggerDocs = swaggerJSDoc(swaggerOptions)
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+
 app.use('/api/users',usersRouter);
 app.use('/api/pets',petsRouter);
 app.use('/api/adoptions',adoptionsRouter);
