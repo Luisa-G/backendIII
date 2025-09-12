@@ -48,6 +48,10 @@ CMD ["npm", "start"]
 # docker build -t app-commerce-imagen .
 # docker run -p 8080:3001 --name app-commerce-contenedor app-commerce-imagen || afuera:adentro *nomnre contenedor* *nombre imagen*
 
+# docker build -t app-adoption-imagen .
+# docker run -p 8080:3001 --name app-adoption-contenedor app-adoption-imagen
+# docker build -t luisafg/app-adoption-imagen:1.0.0 .
+# docker push luisafg/app-adoption-imagen:1.0.0
 
 # dockerhub
 
