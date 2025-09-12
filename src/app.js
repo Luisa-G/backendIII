@@ -40,9 +40,7 @@ const swaggerOptions = {
     },
     apis: ["./src/docs/*.yaml"]
 };
-
 const swaggerDocs = swaggerJSDoc(swaggerOptions)
-
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 app.use('/api/users',usersRouter);

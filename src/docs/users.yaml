@@ -1,12 +1,7 @@
-# app.use("/api/users", usersRouter);
 
-# router.get('/',usersController.getAllUsers);
-# router.get('/:uid',usersController.getUser);
-# router.put('/:uid',usersController.updateUser);
-# router.delete('/:uid',usersController.deleteUser);
 
 paths:
-  /api/users/:
+  /api/users:
     get:
       summary: Obtiene una lista de usuarios
       tags:
@@ -45,8 +40,49 @@ paths:
         "500":
           description: Error inesperado en el servidor, no se pudo manejar el proceso.
 
+    put:
+      summary: Actualiza un usuario
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: ID del usuario a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "200":
+          description: Usuario actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "500":
+          description: Error inesperado en el servidor, no se pudo manejar el proceso.
 
-
+    delete:
+      summary: Elimina un usuario
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: ID del usuario a eliminar
+      responses:
+        "200":
+          description: Usuario eliminado
+        "500":
+          description: Error inesperado en el servidor, no se pudo manejar el proceso.
 
 components:
   schemas:
